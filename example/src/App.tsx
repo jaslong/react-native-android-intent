@@ -7,13 +7,15 @@ export default function App() {
   const [intent, setIntent] = React.useState<Intent>();
 
   useEffect(() => {
-    const listener = (state: AppStateStatus) => {
-      if (state === 'active') {
-        getIntent().then(setIntent);
+    const subscription = AppState.addEventListener(
+      'change',
+      (state: AppStateStatus) => {
+        if (state === 'active') {
+          getIntent().then(setIntent);
+        }
       }
-    };
-    AppState.addEventListener('change', listener);
-    return () => AppState.removeEventListener('change', listener);
+    );
+    return subscription.remove;
   }, []);
 
   return (

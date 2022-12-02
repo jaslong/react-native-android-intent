@@ -2,5 +2,7 @@ rootProject.name = 'ReactNativeGetIntentExample'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 
+includeBuild('../node_modules/react-native-gradle-plugin')
+
 include ':reactnativegetintent'
 project(':reactnativegetintent').projectDir = new File(rootProject.projectDir, '../../android')
